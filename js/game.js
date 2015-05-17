@@ -72,6 +72,10 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 
+	//move monster?
+	monster.x++;
+	monster.y++;
+
 	// Are they touching?
 	if (
 		hero.x <= (monster.x + 32)
