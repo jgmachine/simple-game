@@ -1,2 +1,2 @@
 # simple-game
-https://github.com/jgmachine/simple-game
+http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
