@@ -5,7 +5,7 @@ canvas.width = 512;
 canvas.height = 480;
 document.body.appendChild(canvas);
 
-//Background image
+// Background image
 var bgReady = false;
 var bgImage = new Image();
 bgImage.onload = function () {
@@ -13,16 +13,27 @@ bgImage.onload = function () {
 };
 bgImage.src = "images/background.png";
 
+// Hero image
+var heroReady = false;
+var heroImage = new Image();
+heroImage.onload = function () {
+	heroReady = true;
+};
+heroImage.src = "images/hero.png";
+
+// Monster image
+var monsterReady = false;
+var monsterImage = new Image();
+monsterImage.onload = function () {
+	monsterReady = true;
+};
+monsterImage.src = "images/monster.png";
+
 // Game objects
 var hero = {
-	speed: 256, // movement in pixels per second
-	x: 0,
-	y: 0
+	speed: 256 // movement in pixels per second
 };
-var monster = {
-	x: 0,
-	y: 0
-};
+var monster = {};
 var monstersCaught = 0;
 
 // Handle keyboard controls
@@ -30,7 +41,7 @@ var keysDown = {};
 
 addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
-}, false)
+}, false);
 
 addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
@@ -48,16 +59,16 @@ var reset = function () {
 
 // Update game objects
 var update = function (modifier) {
-	if (38 in keysDown) { //Player holding up
+	if (38 in keysDown) { // Player holding up
 		hero.y -= hero.speed * modifier;
 	}
-	if (40 in keysDown) { //Player holding down
+	if (40 in keysDown) { // Player holding down
 		hero.y += hero.speed * modifier;
 	}
-	if (37 in keysDown) { //Player holding left
+	if (37 in keysDown) { // Player holding left
 		hero.x -= hero.speed * modifier;
 	}
-	if (39 in keysDown) { //Player holding right
+	if (39 in keysDown) { // Player holding right
 		hero.x += hero.speed * modifier;
 	}
 
@@ -67,7 +78,7 @@ var update = function (modifier) {
 		&& monster.x <= (hero.x + 32)
 		&& hero.y <= (monster.y + 32)
 		&& monster.y <= (hero.y + 32)
-	   ) {
+	) {
 		++monstersCaught;
 		reset();
 	}
@@ -91,8 +102,8 @@ var render = function () {
 	ctx.fillStyle = "rgb(250, 250, 250)";
 	ctx.font = "24px Helvetica";
 	ctx.textAlign = "left";
-	ctx.testBaseline = "top";
-	ctx.fillText("Monsters caught: " + monsersCaught, 32, 32);
+	ctx.textBaseline = "top";
+	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
 };
 
 // The main game loop
